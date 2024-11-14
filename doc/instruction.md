@@ -102,5 +102,28 @@ DATA_DIR
 DATA_VOLUME_PATH
 
 и дополнить docker-compose.yml
+например
+```
+services:
+  storage-manager-1:
+    build: .
+    environment:
+      - LABEL_STUDIO_URL=${LABEL_STUDIO_URL}
+      - LABEL_STUDIO_PROJECT_NAME=${LABEL_STUDIO_PROJECT_NAME_1}
+      - DATA_DIR=${DATA_DIR_1}
+      - DATA_VOLUME_PATH=${DATA_VOLUME_PATH_1}
+    volumes:
+      - ${DATA_VOLUME_PATH_1}:${LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT}/${DATA_DIR_1}
+
+  storage-manager-2:
+    build: .
+    environment:
+      - LABEL_STUDIO_URL=${LABEL_STUDIO_URL}
+      - LABEL_STUDIO_PROJECT_NAME=${LABEL_STUDIO_PROJECT_NAME_2}
+      - DATA_DIR=${DATA_DIR_2}
+      - DATA_VOLUME_PATH=${DATA_VOLUME_PATH_2}
+    volumes:
+      - ${DATA_VOLUME_PATH_2}:${LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT}/${DATA_DIR_2}
+```
 
 так же необходимо создать соответствующие папки по примеру в Dockerfile
